@@ -4,7 +4,10 @@ import { Routes } from '../contants';
 
 export type UserDocument = HydratedDocument<User>;
 
-@Schema()
+@Schema({
+  timestamps: true,
+  collection: 'User',
+})
 export class User {
   @Prop({ unique: true, min: 8 })
   email: string;
