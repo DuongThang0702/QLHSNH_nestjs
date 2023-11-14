@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-import { Routes } from '../contants';
+import { Roles } from '../contants';
 
 export type UserDocument = HydratedDocument<User>;
 
@@ -18,7 +18,7 @@ export class User {
   @Prop({
     type: String,
     required: true,
-    enum: Routes,
+    enum: Roles,
   })
   role: string;
 }

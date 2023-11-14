@@ -17,7 +17,7 @@ export class UserService implements IUserService {
         HttpStatus.BAD_REQUEST,
       );
     const newUser = new this.userModel({ ...data });
-    const response = await newUser.save();
+    const response: UserDocument = await newUser.save();
     if (response === null)
       throw new HttpException(
         'Something went wrong',

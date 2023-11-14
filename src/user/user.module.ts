@@ -16,5 +16,11 @@ import { User, UserSchema } from 'src/utils/schema';
       useClass: UserService,
     },
   ],
+  exports: [
+    {
+      provide: Services.USER_SERVICE,
+      useClass: UserService,
+    },
+  ],
 })
 export class UserModule {}
