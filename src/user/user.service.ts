@@ -9,6 +9,12 @@ export class UserService implements IUserService {
   constructor(
     @InjectModel(User.name) private readonly userModel: Model<User>,
   ) {}
+  async getOneBy(data: object): Promise<UserDocument> {
+    const user = await this.userModel.findOne({ ...data });
+    if (user === null)
+      throw new HttpException('invalid email', HttpStatus.BAD_REQUEST);
+    else return user;
+  }
   async create(data: TCreateUser): Promise<UserDocument> {
     const matchEmail = await this.userModel.findOne({ email: data.email });
     if (matchEmail)
@@ -28,7 +34,7 @@ export class UserService implements IUserService {
   async getAll(): Promise<UserDocument[]> {
     return await this.userModel.find();
   }
-  async getOneBy(uid: string): Promise<UserDocument> {
+  async getOneById(uid: string): Promise<UserDocument> {
     const validateUid = Types.ObjectId.isValid(uid);
     if (!validateUid)
       throw new HttpException('invalid uid', HttpStatus.BAD_REQUEST);

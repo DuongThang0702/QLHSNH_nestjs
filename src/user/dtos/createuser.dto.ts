@@ -11,6 +11,8 @@ export class CreateUserDto {
   password: string;
   @IsNotEmpty()
   role: string;
+  @IsNotEmpty()
+  fullname: string;
 }
 
 export class CreaterUserSuccessDto {

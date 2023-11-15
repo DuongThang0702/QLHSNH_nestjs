@@ -15,6 +15,12 @@ export class User {
   @Prop({ min: 6 })
   password: string;
 
+  @Prop()
+  fullname: string;
+
+  @Prop({ default: '' })
+  refresh_token: string;
+
   @Prop({
     type: String,
     required: true,
